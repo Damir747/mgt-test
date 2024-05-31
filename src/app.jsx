@@ -18,7 +18,7 @@ function App() {
 			setTimeout(() => {
 				dispatch(loadReviews(data));
 				dispatch(changeLanguage('ru'));
-			}, 1000);
+			}, 500);
 		}
 	}, [isReviewListLoading, dispatch]);
 
@@ -30,9 +30,9 @@ function App() {
 
 	return (
 		<>
-			<Header>
-
-			</Header>
+			<Header
+				dispatch={dispatch}
+			/>
 			<div className="app">
 
 			</div>
