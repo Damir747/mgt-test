@@ -8,6 +8,7 @@ import ReviewList from './components/review-list/review-list';
 import data from './store/mock/data';
 import { loadReviews } from './store/review-data/actions';
 import { changeLanguage } from './store/lang-data/actions';
+import { getLanguage } from './store/lang-data/selectors';
 
 function App() {
 	const isReviewListLoading = useSelector(getIsReviewListLoading);
@@ -31,12 +32,15 @@ function App() {
 	return (
 		<>
 			<Header
-				dispatch={dispatch}
+				changeLanguage={changeLanguage}
 			/>
 			<div className="app">
 
 			</div>
-			<ReviewList />
+			<ReviewList
+				reviews={data}
+				language={getLanguage}
+			/>
 		</>
 	);
 }
