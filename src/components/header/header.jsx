@@ -7,6 +7,7 @@ class Header extends React.Component {
 		super(props);
 		this.changeLanguage = props.changeLanguage;
 		this.language = props.language;
+		this.dispatch = props.dispatch;
 	}
 
 	render() {
@@ -20,10 +21,7 @@ class Header extends React.Component {
 						alt="картинка из открытых источников" />
 				</a>
 
-				<SelectForm
-					changeLanguage={this.props.changeLanguage}
-					language={this.props.language}
-				/>
+				<SelectForm />
 
 				<Watch />
 

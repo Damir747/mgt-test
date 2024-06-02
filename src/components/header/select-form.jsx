@@ -1,23 +1,13 @@
 import React from "react";
-// import { connect } from "react-redux";
-// import { getLanguage } from '../../store/lang-data/selectors';
+import { connect } from "react-redux";
+import { getLanguage } from '../../store/lang-data/selectors';
+import { changeLanguage } from "../../store/lang-data/actions";
 
 class SelectForm extends React.Component {
-	constructor(props) {
-		super(props);
-		// this.dispatch = props.dispatch;
-		this.language = props.language;
-		this.handleChange = this.handleChange.bind(this);
-	}
-
-	handleChange(event) {
-		// this.props.dispatch(this.props.changeLanguage(event.target.value));
-		return this.props.changeLanguage(event.target.value)
-	}
 
 	render() {
 		return (
-			<select value={this.props.language} onChange={this.handleChange}>
+			<select value={this.props.language} onChange={(event) => this.props.handleChange(event)}>
 				<option value="ru">ru</option>
 				<option value="en">en</option>
 			</select>
@@ -25,10 +15,15 @@ class SelectForm extends React.Component {
 	}
 }
 
-// const mapStateToProps = (state) => ({
-// 	language: getLanguage(state),
-// });
+const mapStateToProps = (state) => ({
+	language: getLanguage(state),
+});
 
-// export { SelectForm };
-// export default connect(mapStateToProps, null)(SelectForm);
-export default SelectForm;
+const mapDispatchToProps = (dispatch) => ({
+	handleChange(event) {
+		dispatch(changeLanguage(event.target.value));
+	},
+});
+
+export { SelectForm };
+export default connect(mapStateToProps, mapDispatchToProps)(SelectForm);

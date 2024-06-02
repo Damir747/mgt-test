@@ -17,10 +17,8 @@ const getSliceAllLanguages = (data, begin, end) => {
 	const keysOfData = Object.keys(data);
 	const obj = {};
 	for (let i = 0; i < keysOfData.length; i++) {
-		// console.log(getSlice(data[keysOfData[i]], begin, end));
 		Object.assign(obj, { [keysOfData[i]]: getSlice(data[keysOfData[i]], begin, end) });
 	}
-	console.log(obj);
 	return obj;
 };
 
