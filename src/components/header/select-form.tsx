@@ -1,13 +1,11 @@
-import React, { ChangeEvent } from "react";
-import { connect, ConnectedProps } from "react-redux";
+import React, { ChangeEvent } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
 import { getLanguage } from '../../store/lang-data/selectors';
 import { changeLanguage } from '../../store/lang-data/actions';
 import { RootState } from '../../store/root-reducer';
 
-// Определение типа PropsFromRedux
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-// Определение пропсов компонента
 interface SelectFormProps extends PropsFromRedux { }
 
 class SelectForm extends React.Component<SelectFormProps> {

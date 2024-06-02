@@ -1,4 +1,10 @@
-const data = {
+type Data = {
+	[key: string]: {
+		// ваша структура данных
+	};
+};
+
+const data: Data = {
 	"ru": {
 		"client_1": {
 			"name": "Иванова Елена",

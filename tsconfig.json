@@ -6,20 +6,22 @@
 			"dom",
 			"esnext"
 		],
-		"jsx": "react",
 		"allowJs": true,
 		"checkJs": false,
 		"strict": true,
 		"esModuleInterop": true,
+		"jsx": "react",
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"noEmit": true,
 		"moduleResolution": "node",
-		"baseUrl": "./src"
+		"baseUrl": "./src",
+		"allowImportingTsExtensions": true,
 	},
 	"include": [
-		"src"
-	]
+		"**/*.ts",
+		"**/*.tsx"
+	],
 }

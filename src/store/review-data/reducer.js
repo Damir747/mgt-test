@@ -15,7 +15,7 @@ const reviewReducer = (state = initialState, action) => {
 			};
 		}
 		default: {
-			// console.log(`Неизвестный action.type: ${action.type}`);
+
 		}
 	}
 	return state;

@@ -1,6 +1,6 @@
-import React from "react";
-import SelectForm from "./select-form.tsx";
-import Watch from "./watch.tsx";
+import React from 'react';
+import SelectForm from './select-form';
+import Watch from './watch';
 
 class Header extends React.Component {
 	render() {

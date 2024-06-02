@@ -1,8 +1,8 @@
-import React from "react";
-import { formatFIO } from "../../utils/utils";
-import { connect } from "react-redux";
-import { getReviews } from "../../store/review-data/selectors";
-import { RootState } from "../../store/root-reducer";
+import React from 'react';
+import { connect } from 'react-redux';
+import { getReviews } from '../../store/review-data/selectors';
+import { formatFIO } from '../../utils/utils.ts';
+import { RootState } from '../../store/root-reducer';
 
 interface ReviewListProps {
 	reviews: {
