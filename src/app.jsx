@@ -16,7 +16,6 @@ function App() {
 	const ROWS_PER_PAGE = 5;
 	const dispatch = useDispatch();
 
-	const [reviews, setReviews] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPageCount, setTotalPageCount] = useState(1);
@@ -34,16 +33,12 @@ function App() {
 				// setReviews(getSliceAllLanguages(data, ROWS_PER_PAGE * (currentPage - 1), ROWS_PER_PAGE * currentPage)[lang]);
 				setTotalPageCount(Math.ceil(getLength(data[lang]) / ROWS_PER_PAGE));
 			}, 500);
-		} else {
-			// dispatch(loadReviews(getSliceAllLanguages(data, ROWS_PER_PAGE * (currentPage - 1), ROWS_PER_PAGE * currentPage)[lang]));
-			// dispatch(changeLanguage(lang));
 		}
-	}, [isLoading, currentPage, lang]);
+	}, [isLoading, currentPage, lang, dispatch]);
 
 	useEffect(() => {
 		// dispatch(getLanguage);
 		dispatch(loadReviews(getSliceAllLanguages(data, ROWS_PER_PAGE * (currentPage - 1), ROWS_PER_PAGE * currentPage)[lang]));
-		// setReviews(getSliceAllLanguages(data, ROWS_PER_PAGE * (currentPage - 1), ROWS_PER_PAGE * currentPage)[lang]);
 		setTotalPageCount(Math.ceil(getLength(data[lang]) / ROWS_PER_PAGE));
 	}, [currentPage, lang, dispatch]);
 
@@ -78,9 +73,7 @@ function App() {
 				language={lang}
 			/>
 
-			<ReviewList
-			// reviews={reviews}
-			/>
+			<ReviewList />
 
 			<Footer
 				nav={{

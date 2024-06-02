@@ -5,9 +5,7 @@ import { getReviews } from "../../store/review-data/selectors";
 
 class ReviewList extends React.Component {
 	render() {
-		console.log(this.props.reviews);
 		const obj = this.props.reviews[Object.keys(this.props.reviews)[0]];
-		console.log(obj);
 		if (!obj) {
 			return (<></>);
 		}
@@ -42,4 +40,3 @@ const mapStateToProps = (state) => ({
 
 export { ReviewList };
 export default connect(mapStateToProps, null)(ReviewList);
-// export default ReviewList;
