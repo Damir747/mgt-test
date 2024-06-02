@@ -6,7 +6,7 @@ import Header from './components/header/header';
 import ReviewList from './components/review-list/review-list';
 // import { getIsReviewListLoading, getReviews } from './store/review-data/selectors';
 import data from './store/mock/data';
-// import { loadReviews } from './store/review-data/actions';
+import { loadReviews } from './store/review-data/actions';
 // import { changeLanguage } from './store/lang-data/actions';
 import Footer from './components/footer/footer';
 import { getLength, getSliceAllLanguages } from './utils/utils';
@@ -27,11 +27,11 @@ function App() {
 	useEffect(() => {
 		if (isLoading) {
 			setTimeout(() => {
-				// dispatch(loadReviews(getSliceAllLanguages(data, ROWS_PER_PAGE * (currentPage - 1), ROWS_PER_PAGE * currentPage)[lang]));
+				dispatch(loadReviews(getSliceAllLanguages(data, ROWS_PER_PAGE * (currentPage - 1), ROWS_PER_PAGE * currentPage)[lang]));
 				// dispatch(changeLanguage(lang));
 				setIsLoading(false);
 				setLang('ru');
-				setReviews(getSliceAllLanguages(data, ROWS_PER_PAGE * (currentPage - 1), ROWS_PER_PAGE * currentPage)[lang]);
+				// setReviews(getSliceAllLanguages(data, ROWS_PER_PAGE * (currentPage - 1), ROWS_PER_PAGE * currentPage)[lang]);
 				setTotalPageCount(Math.ceil(getLength(data[lang]) / ROWS_PER_PAGE));
 			}, 500);
 		} else {
@@ -42,9 +42,10 @@ function App() {
 
 	useEffect(() => {
 		// dispatch(getLanguage);
-		setReviews(getSliceAllLanguages(data, ROWS_PER_PAGE * (currentPage - 1), ROWS_PER_PAGE * currentPage)[lang]);
+		dispatch(loadReviews(getSliceAllLanguages(data, ROWS_PER_PAGE * (currentPage - 1), ROWS_PER_PAGE * currentPage)[lang]));
+		// setReviews(getSliceAllLanguages(data, ROWS_PER_PAGE * (currentPage - 1), ROWS_PER_PAGE * currentPage)[lang]);
 		setTotalPageCount(Math.ceil(getLength(data[lang]) / ROWS_PER_PAGE));
-	}, [currentPage, lang]);
+	}, [currentPage, lang, dispatch]);
 
 	const handleNextPageClick = useCallback(() => {
 		const next = currentPage + 1;
@@ -78,7 +79,7 @@ function App() {
 			/>
 
 			<ReviewList
-				reviews={reviews}
+			// reviews={reviews}
 			/>
 
 			<Footer

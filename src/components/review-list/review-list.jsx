@@ -1,7 +1,7 @@
 import React from "react";
 import { formatFIO } from "../../utils/utils";
-// import { connect } from "react-redux";
-// import { getReviews } from "../../store/review-data/selectors";
+import { connect } from "react-redux";
+import { getReviews } from "../../store/review-data/selectors";
 
 class ReviewList extends React.Component {
 	render() {
@@ -36,10 +36,10 @@ class ReviewList extends React.Component {
 	}
 }
 
-// const mapStateToProps = (state) => ({
-// 	reviews: getReviews(state),
-// });
+const mapStateToProps = (state) => ({
+	reviews: getReviews(state),
+});
 
-// export { ReviewList };
-// export default connect(mapStateToProps, null)(ReviewList);
-export default ReviewList;
+export { ReviewList };
+export default connect(mapStateToProps, null)(ReviewList);
+// export default ReviewList;
