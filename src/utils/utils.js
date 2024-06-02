@@ -1,11 +1,39 @@
-import { mockHeader } from "../mock/mock";
-
 /**
  * Join classnames from array to string
  * @param {Array} arr
  * @return {string}
  */
 const classname = (...arr) => arr.join(' ');
+
+const formatFIO = (strFIO) => {
+	if (!strFIO) {
+		return strFIO;
+	}
+	const [familyName, firstName] = strFIO.split(' ');
+	return familyName + ' ' + (firstName ? firstName[0] + '.' : '');
+};
+
+const getSliceAllLanguages = (data, begin, end) => {
+	const keysOfData = Object.keys(data);
+	const obj = {};
+	for (let i = 0; i < keysOfData.length; i++) {
+		// console.log(getSlice(data[keysOfData[i]], begin, end));
+		Object.assign(obj, { [keysOfData[i]]: getSlice(data[keysOfData[i]], begin, end) });
+	}
+	console.log(obj);
+	return obj;
+};
+
+const getSlice = (data, begin, end) => {
+	const keysOfData = Object.keys(data).slice(begin, end);
+	const obj = {};
+	for (let i = 0; i < keysOfData.length; i++) {
+		Object.assign(obj, { [keysOfData[i]]: data[keysOfData[i]] });
+	}
+	return obj;
+};
+
+const getLength = (data) => Object.keys(data).length;
 
 const parseDate = (strDate) => {
 	if (!strDate) {
@@ -24,21 +52,4 @@ function convertDate(inputFormat) {
 		+ [pad(d.getHours()), pad(d.getMinutes() + 1), d.getSeconds()].join(':')
 }
 
-const sortArray = (sort) => {
-	switch (sort) {
-		case mockHeader[0]:
-			return ((a, b) => parseDate(a.date) > parseDate(b.date));
-		case mockHeader[1]:
-			return ((a, b) => a.importance > b.importance);
-		case mockHeader[2]:
-			return ((a, b) => a.equipment > b.equipment);
-		case mockHeader[3]:
-			return ((a, b) => a.message > b.message);
-		case mockHeader[4]:
-			return ((a, b) => a.fellowWorker > b.fellowWorker);
-		default:
-			return (a, b) => a.date > b.date;
-	}
-};
-
-export { classname, sortArray, parseDate, convertDate };
+export { classname, formatFIO, parseDate, convertDate, getSliceAllLanguages, getSlice, getLength };

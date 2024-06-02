@@ -1,16 +1,18 @@
 import React from "react";
-import { connect } from "react-redux";
-import { getLanguage } from '../../store/lang-data/selectors';
+import { formatFIO } from "../../utils/utils";
+// import { connect } from "react-redux";
+// import { getReviews } from "../../store/review-data/selectors";
 
 class ReviewList extends React.Component {
-
 	render() {
-		console.log(this.props.language);
 		console.log(this.props.reviews);
-
-		const obj = this.props.reviews[this.props.language][Object.keys(this.props.reviews[this.props.language])[0]];
+		const obj = this.props.reviews[Object.keys(this.props.reviews)[0]];
+		console.log(obj);
+		if (!obj) {
+			return (<></>);
+		}
 		return (
-			<div>
+			<div className="body-content">
 				<table className="table">
 					<thead className="table-head">
 						<tr className="table-head-row">
@@ -20,11 +22,11 @@ class ReviewList extends React.Component {
 						</tr>
 					</thead>
 					<tbody className="table-body">
-						{Object.keys(this.props.reviews[this.props.language]).map(el =>
+						{Object.keys(this.props.reviews).map(el =>
 							<tr key={el} className="table-body-row">
-								<td>{this.props.reviews[this.props.language][el].name}</td>
-								<td>{this.props.reviews[this.props.language][el].review}</td>
-								<td>{this.props.reviews[this.props.language][el].date}</td>
+								<td>{formatFIO(this.props.reviews[el].name)}</td>
+								<td>{this.props.reviews[el].review}</td>
+								<td>{this.props.reviews[el].date}</td>
 							</tr>
 						)}
 					</tbody>
@@ -34,9 +36,10 @@ class ReviewList extends React.Component {
 	}
 }
 
-const mapStateToProps = (state) => ({
-	language: getLanguage(state),
-});
+// const mapStateToProps = (state) => ({
+// 	reviews: getReviews(state),
+// });
 
-export { ReviewList };
-export default connect(mapStateToProps, null)(ReviewList);
+// export { ReviewList };
+// export default connect(mapStateToProps, null)(ReviewList);
+export default ReviewList;

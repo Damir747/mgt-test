@@ -1,5 +1,8 @@
-.app {
-	text-align: center;
+#root {
+	height: 100vh;
+	display: grid;
+	grid-gap: 10px;
+	grid-template-rows: 25vh auto 50px;
 }
 
 .app-logo {
@@ -14,8 +17,9 @@
 }
 
 .app-header {
+	grid-row: 1;
 	background-color: #282c34;
-	min-height: 25vh;
+	/* min-height: 25vh; */
 	display: flex;
 	flex-direction: row;
 	gap: 20px;
@@ -44,10 +48,80 @@
 	}
 }
 
+.body-content {
+	grid-row: 2;
+	height: 100%;
+}
+
+table {
+	margin: 5px 2%;
+	align-content: center;
+	border: #282c34 solid 1px;
+	border-collapse: collapse;
+}
+
+th {
+	border: #282c34 solid 1px;
+}
+
+th:nth-child(1) {
+	min-width: 120px;
+}
+
+th:nth-child(2) {
+	width: 100%;
+}
+
+td {
+	padding: 0 5px;
+}
+
+th:nth-child(3) {
+	min-width: 120px;
+	text-align: center;
+}
+
+td:nth-child(1) {
+	text-align: left;
+	border-right: #282c34 dashed 1px;
+}
+
+td:nth-child(2) {
+	text-align: justify;
+	border-right: #282c34 dashed 1px;
+}
+
+td:nth-child(3) {
+	text-align: right;
+}
+
 tbody tr:nth-child(odd) {
 	background-color: white;
 }
 
 tbody tr:nth-child(even) {
 	background-color: lightgray;
+}
+
+.app-footer {
+	grid-row: 3;
+	/* min-height: 25vh; */
+}
+
+.pagination__div {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.pagination__left,
+.pagination__right {
+	margin: 5px;
+	width: 20px;
+	height: 20px;
+}
+
+.pagination__nav {
+	margin: 5px;
 }
