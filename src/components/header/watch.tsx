@@ -1,8 +1,16 @@
 import React from "react";
 import './watch.css';
 
-class Watch extends React.Component {
-	constructor(props) {
+interface WatchState {
+	hours: number;
+	minutes: number;
+	seconds: number;
+}
+
+class Watch extends React.Component<{}, WatchState> {
+	private timerID: NodeJS.Timeout | null = null;
+
+	constructor(props: {}) {
 		super(props);
 		this.state = {
 			hours: new Date().getHours(),
@@ -12,13 +20,13 @@ class Watch extends React.Component {
 	}
 
 	componentDidMount() {
-		this.timerID = setInterval(
-			() => this.tick(),
-			1000);
+		this.timerID = setInterval(() => this.tick(), 1000);
 	}
 
 	componentWillUnmount() {
-		clearInterval(this.timerID);
+		if (this.timerID) {
+			clearInterval(this.timerID);
+		}
 	}
 
 	tick() {
@@ -30,23 +38,25 @@ class Watch extends React.Component {
 	}
 
 	render() {
+		const { hours, minutes, seconds } = this.state;
+
 		return (
 			<div className="watch">
 				<div className="col-4">
 					<div className="box">
-						<p id="hour">{this.state.hours < 10 ? "0" + this.state.hours : this.state.hours}</p>
+						<p id="hour">{hours < 10 ? "0" + hours : hours}</p>
 						<span className="text">Hours</span>
 					</div>
 				</div>
 				<div className="col-4">
 					<div className="box">
-						<p id="minute">{this.state.minutes < 10 ? "0" + this.state.minutes : this.state.minutes}</p>
+						<p id="minute">{minutes < 10 ? "0" + minutes : minutes}</p>
 						<span className="text">Minutes</span>
 					</div>
 				</div>
 				<div className="col-4">
 					<div className="box">
-						<p id="second">{this.state.seconds < 10 ? "0" + this.state.seconds : this.state.seconds}</p>
+						<p id="second">{seconds < 10 ? "0" + seconds : seconds}</p>
 						<span className="text">Seconds</span>
 					</div>
 				</div>
